@@ -3,71 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portfolio</title>
+    <title>Portfolio Owen Pizarro</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
+            color: #333;
         }
+
         header {
-            background-color: #34495e;
+            background: linear-gradient(135deg, #0069c0, #00bcd4);
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 40px 0 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+        }
+
+        .portada {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .portada img {
+            max-width: 90%;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         nav {
-            background-color: #2c3e50;
+            background-color: #002f4b;
             text-align: center;
-            padding: 10px;
+            padding: 12px 0;
         }
+
         nav a {
             color: white;
-            margin: 0 18px;
             text-decoration: none;
+            margin: 0 20px;
             font-weight: bold;
+            transition: color 0.3s;
         }
+
         nav a:hover {
-            color: #00bcd4;
+            color: #00e5ff;
         }
+
         section {
             max-width: 900px;
             background: white;
-            margin: 30px auto;
-            padding: 28px;
-            border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
         }
+
         h2 {
-            color: #34495e;
+            color: #005b96;
+            margin-bottom: 15px;
         }
+
+        .proyecto {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .proyecto img {
+            width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .proyecto img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+        }
+
         footer {
             text-align: center;
             padding: 15px;
-            background: #2c3e50;
+            background: #002f4b;
             color: white;
             margin-top: 60px;
-        }
-        .proyecto {
-            margin-bottom: 20px;
-        }
-        .proyecto a {
-            color: #2980b9;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .proyecto a:hover {
-            color: #00bcd4;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Mi Portafolio</h1>
-        <p>Proyectos realizados para el instituto</p>
+        <h1>Portfolio Owen Pizarro</h1>
+        <p>Proyectos y trabajos realizados en el instituto</p>
     </header>
+
+    <div class="portada">
+        <img src="imagenes/imagen_2025-10-24_112454223.png" alt="Imagen IA sobre informática y redes">
+    </div>
 
     <nav>
         <a href="#sobre-mi">Sobre mí</a>
@@ -77,34 +119,37 @@
 
     <section id="sobre-mi">
         <h2>Sobre mí</h2>
-        <p>Hola, soy Owen Pizarro un estudiante de informática apasionado por ella y por la ciberseguridad. Este portafolio recoge mis principales trabajos y prácticas realizadas durante el curso escolar.</p>
+        <p>Hola, soy Owen Pizarro, estudiante de informática con interés en redes, desarrollo web y tecnologías emergentes. Este portafolio recopila algunos de mis trabajos académicos y personales más destacados.</p>
     </section>
 
     <section id="proyectos">
-        <h2>Mis proyectos</h2>
+        <h2>Proyectos</h2>
 
         <div class="proyecto">
             <h3>Trabajo 1: Montar un servidor de IA</h3>
-            <p>Realizar un presupuesto de un servidor IA</p>
-            <a href="pdf/Presupuesto_compressed.pdf" target="_blank">Abrir en PDF</a>
+            <a href="pdf/Presupuesto_compressed.pdf" target="_blank">
+                <img src="imgagenes/imagen_2025-10-24_112539860" alt="Ver Trabajo 1">
+            </a>
         </div>
 
         <div class="proyecto">
             <h3>Trabajo 2: Desmontar y Montar un PC en el taller</h3>
-            <p>Documentacion del proceso de desmontaje y montaje de un pc.</p>
-            <a href="pdf/Desmontaje de PC_compressed.pdf" target="_blank">Abrir en PDF</a>
+            <a href="pdf/Desmontaje de PC_compressed.pdf" target="_blank">
+                <img src="imagenes/imagen_2025-10-24_113933041" alt="Ver Trabajo 2">
+            </a>
         </div>
 
         <div class="proyecto">
             <h3>Trabajo 3: Desmontar y Montar un servidor y un portátil en el taller</h3>
-            <p>Documentacion del proceso de desmontaje y montaje de un servidor.</p>
-            <a href="pdf/Desmontaje y Desmontaje de un Servidor_compressed.pdf" target="_blank">Abrir en PDF</a>
+            <a href="pdf/Desmontaje y Desmontaje de un Servidor_compressed.pdf" target="_blank">
+                <img src="imagenes/imagen_2025-10-24_112539860" alt="Ver Trabajo 3">
+            </a>
         </div>
     </section>
 
     <section id="contacto">
         <h2>Contacto</h2>
-        <p>Puedes contactar conmigo a través de: <a href="mailto:tuemail@ejemplo.com">owen.pizarrob@gmail.com</a></p>
+        <p>Puedes escribirme a: <a href="mailto: owen.pizarrob@gmail.com">owen.pizarrob@gmail.com</a></p>
     </section>
 
     <footer>
