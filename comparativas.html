@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comparativa de IAs</title>
+    <style>
+        /* Fondo general oscuro */
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+            /* Fondo Matrix */
+            background:
+                linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+                url("matrix.jpg") no-repeat center center fixed;
+            background-size: cover;
+
+            color: #f4f4f5;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            letter-spacing: 1px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #9ca3af;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            background: #020617;
+            border-radius: 16px;
+            padding: 24px 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            border: 1px solid #1f2937;
+        }
+
+        .contenedor h2 {
+            margin-top: 0;
+            color: #e5e7eb;
+        }
+
+        .nota {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos de la tabla */
+        .tabla-ias {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tabla-ias thead {
+            background: linear-gradient(90deg, #c52222, #e9830e, #bef755);
+        }
+
+        .tabla-ias th,
+        .tabla-ias td {
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .tabla-ias th {
+            color: #0b1120;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tabla-ias tbody tr:nth-child(odd) {
+            background-color: #020617;
+        }
+
+        .tabla-ias tbody tr:nth-child(even) {
+            background-color: #020617;
+        }
+
+        .tabla-ias tbody tr:hover {
+            background-color: #241127;
+        }
+
+        .tabla-ias td {
+            border-top: 1px solid #37271f;
+            color: #e5e7eb;
+        }
+
+        .modelo {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .sistema {
+            color: #a5b4fc;
+        }
+
+        .tok {
+            color: #22c55e;
+        }
+
+        .lento {
+            color: #f97316;
+        }
+
+        .gpu {
+            color: #38bdf8;
+        }
+
+        /* Contenedor del gráfico */
+        .grafico-caja {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            background: #020617;
+            border-radius: 16px;
+            padding: 24px 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            border: 1px solid #1f2937;
+        }
+
+        .grafico-caja canvas {
+            width: 100%;
+            max-height: 350px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Comparativa de IAs</h1>
+
+    <div class="contenedor">
+        <h2>Datos de rendimiento</h2>
+        <p class="nota">Valores basados en pruebas de ejemplo: más tokens/segundo implica más rapidez, menos tiempo total implica mejor rendimiento.</p>
+
+        <table class="tabla-ias">
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Sistema</th>
+                    <th>Tok/seg</th>
+                    <th>Primer token (s)</th>
+                    <th>Tokens</th>
+                    <th>Tiempo total (s)</th>
+                    <th>% GPU</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="modelo">Google - Gemma 3 4B</td>
+                    <td class="sistema">Windows</td>
+                    <td class="tok">95.01</td>
+                    <td>0.46</td>
+                    <td>900</td>
+                    <td>11.28</td>
+                    <td class="gpu">87</td>
+                </tr>
+                <tr>
+                    <td class="modelo">Google - Gemma 3 4B</td>
+                    <td class="sistema">Mac</td>
+                    <td class="tok">35.53</td>
+                    <td class="lento">3.69</td>
+                    <td>672</td>
+                    <td>18.28</td>
+                    <td class="gpu">77</td>
+                </tr>
+                <tr>
+                    <td class="modelo">Qwen/qwen3-vl-4b</td>
+                    <td class="sistema">Windows</td>
+                    <td class="tok">36.78</td>
+                    <td>0.13</td>
+                    <td>756</td>
+                    <td>19.70</td>
+                    <td class="gpu">68</td>
+                </tr>
+                <tr>
+                    <td class="modelo">Qwen/qwen3-vl-4b</td>
+                    <td class="sistema">Mac</td>
+                    <td class="tok">33.26</td>
+                    <td class="lento">6.88</td>
+                    <td>747</td>
+                    <td>13.25</td>
+                    <td class="gpu">12.5</td>
+                </tr>
+                <tr>
+                    <td class="modelo">Qwen3-4b-thinking-2507</td>
+                    <td class="sistema">Windows</td>
+                    <td class="tok">112.78</td>
+                    <td>0.20</td>
+                    <td>2144</td>
+                    <td>8.37</td>
+                    <td class="gpu">92</td>
+                </tr>
+                <tr>
+                    <td class="modelo">Qwen3-4b-thinking-2507</td>
+                    <td class="sistema">Mac</td>
+                    <td class="tok">32.88</td>
+                    <td>0.20</td>
+                    <td>1488</td>
+                    <td>5.18</td>
+                    <td class="gpu">87</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Gráfico único con botones -->
+    <div class="grafico-caja">
+        <h2>Gráfico de rendimiento</h2>
+        <p class="nota">Pulsa un botón para ver los tokens por segundo o el tiempo total de cada modelo.</p>
+
+        <div style="margin-bottom: 15px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button id="btnTok" style="padding:6px 12px; border-radius:8px; border:none; background:#38bdf8; color:#020617; cursor:pointer;">
+                Tokens por segundo
+            </button>
+            <button id="btnTiempo" style="padding:6px 12px; border-radius:8px; border:none; background:#f97316; color:#020617; cursor:pointer;">
+                Tiempo total (s)
+            </button>
+        </div>
+
+        <canvas id="graficoRendimiento"></canvas>
+    </div>
+    <div class="contenedor">
+    <h2>Conclusión rápida por sistema</h2>
+    <p class="nota">Vista express de qué sistema rinde mejor en cada modelo según tus medidas.</p>
+
+    <table class="tabla-ias">
+        <thead>
+            <tr>
+                <th>Modelo</th>
+                <th>Sistema recomendado</th>
+                <th>Comentario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="modelo">Gemma 3 4B</td>
+                <td class="sistema">Windows</td>
+                <td>Genera muchos más tok/seg y completa la respuesta antes que en Mac.</td>
+            </tr>
+            <tr>
+                <td class="modelo">Qwen3-vl-4b</td>
+                <td class="sistema">Según lo que priorices</td>
+                <td>Windows es algo más rápido y responde antes; Mac termina en menos tiempo total.</td>
+            </tr>
+            <tr>
+                <td class="modelo">Qwen3-4b-thinking-2507</td>
+                <td class="sistema">Windows</td>
+                <td>Ofrece el mayor rendimiento en tok/seg; Mac sacrifica tokens para acabar más rápido.</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+
+    <!-- Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Script de los gráficos -->
+    <script>
+    const modelos = [
+      "Gemma 4B",
+      "Gemma 4B",
+      "Qwen VL 4B",
+      "Qwen VL 4B",
+      "Qwen Thinking",
+      "Qwen Thinking"
+    ];
+
+    const sistemas = ["Windows","Mac","Windows","Mac","Windows","Mac"];
+
+    const tokSec = [95.01, 35.53, 36.78, 33.26, 112.78, 32.88];
+    const tiempoTotal = [11.28, 18.28, 19.70, 13.25, 8.37, 5.18];
+
+    // Colores según sistema
+    const coloresFondo = sistemas.map(sis =>
+      sis === "Windows" ? "rgba(56, 189, 248, 0.8)" : "rgba(244, 63, 94, 0.8)"
+    );
+    const coloresBorde = sistemas.map(sis =>
+      sis === "Windows" ? "rgba(56, 189, 248, 1)" : "rgba(244, 63, 94, 1)"
+    );
+
+    // Crear gráfico inicial (TOK/SEC)
+    const ctx = document.getElementById("graficoRendimiento");
+    const grafico = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: modelos.map((m, i) => m + " (" + sistemas[i] + ")"),
+        datasets: [{
+          label: "Tokens por segundo",
+          data: tokSec,
+          backgroundColor: coloresFondo,
+          borderColor: coloresBorde,
+          borderWidth: 1.5,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: "#e5e7eb" } }
+        },
+        scales: {
+          x: {
+            ticks: { color: "#e5e7eb", maxRotation: 45, minRotation: 45 },
+            grid: { display: false }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: { color: "#e5e7eb" },
+            grid: { color: "rgba(148,163,184,0.2)" }
+          }
+        }
+      }
+    });
+
+    // Botones para cambiar los datos
+    document.getElementById("btnTok").addEventListener("click", () => {
+      grafico.data.datasets[0].label = "Tokens por segundo";
+      grafico.data.datasets[0].data = tokSec;
+      grafico.update();
+    });
+
+    document.getElementById("btnTiempo").addEventListener("click", () => {
+      grafico.data.datasets[0].label = "Tiempo total (s)";
+      grafico.data.datasets[0].data = tiempoTotal;
+      grafico.update();
+    });
+    </script>
+
+</body>
+</html>
