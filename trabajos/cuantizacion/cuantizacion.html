@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Cuantización Phi‑3</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #f4f4f5;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-soft: rgba(37,99,235,0.08);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --code-bg: #0f172a;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #e0f2fe 0, #f4f4f5 55%);
+            color: var(--text-main);
+        }
+
+        header {
+            padding: 2.2rem 1.5rem 1.2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        nav {
+            background: #ffffffaa;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0.55rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+        }
+
+        nav a:hover {
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 1.6rem auto 2.8rem;
+            padding: 0 1.5rem 2rem;
+        }
+
+        .section {
+            background: var(--surface);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        h3 {
+            margin-top: 1.2rem;
+            font-size: 1.02rem;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 0.25rem;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #e5e7eb;
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            font-size: 0.86rem;
+        }
+
+        code {
+            font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+        }
+
+        .img-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+
+        .img-row img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.55rem 0.6rem;
+            text-align: left;
+        }
+
+        th {
+            background: #eff6ff;
+            color: #1e293b;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 320px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 720px) {
+            .img-row {
+                flex-direction: row;
+            }
+            .img-wrapper {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informe de cuantización del modelo Phi‑3</h1>
+        <p>Documento de trabajo donde se resume cómo se ha generado una versión ligera del modelo y qué impacto tiene en el rendimiento.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#intro">Resumen</a></li>
+            <li><a href="#pasos">Proceso</a></li>
+            <li><a href="#diferencias">Comparativa</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="intro" class="section">
+            <h2>1. ¿Qué entendemos por cuantización?</h2>
+            <p>
+                En este contexto, cuantizar un modelo de lenguaje significa comprimir sus parámetros para que se almacenen con
+                menos precisión numérica. En lugar de usar valores en coma flotante “grandes”, se emplean representaciones más pequeñas.
+            </p>
+            <p>
+                Esta técnica sacrifica una pequeña parte de la exactitud matemática a cambio de dos ventajas claras: el modelo ocupa
+                mucha menos memoria y la generación de texto se vuelve más rápida, lo que lo hace viable en equipos sin GPU potente.
+            </p>
+        </section>
+
+        <section id="pasos" class="section">
+            <h2>2. Proceso seguido en macOS</h2>
+            <p>A continuación se detalla la secuencia completa que he aplicado para obtener el modelo cuantizado listo para usar.</p>
+
+            <h3>2.1 Preparación del entorno</h3>
+            <pre><code>mkdir ~/cuantizacion-phi3 && cd ~/cuantizacion-phi3
+brew install git-lfs && git lfs install
+git clone https://github.com/ggerganov/llama.cpp.git
+python3 -m venv venv && source venv/bin/activate
+pip install -r llama.cpp/requirements.txt torch transformers huggingface-hub</code></pre>
+            <p>En este paso se dejan instaladas las herramientas necesarias (llama.cpp y dependencias de Python) para poder hacer la conversión del modelo.</p>
+
+            <h3>2.2 Descarga del modelo original</h3>
+            <pre><code>git clone https://huggingface.co/microsoft/Phi-3-mini-4k-instruct</code></pre>
+            <p>Se trae desde Hugging Face la versión oficial de Phi‑3 mini, que será la base desde la cual se genera la variante cuantizada.</p>
+
+            <h3>2.3 Conversión a formato GGUF cuantizado</h3>
+            <pre><code>python3 llama.cpp/convert_hf_to_gguf.py ./Phi-3-mini-4k-instruct \
+ --outtype q4_k_m \
+ --outfile phi-3-mini-q4_k_m.gguf</code></pre>
+            <p>La herramienta de conversión transforma el modelo a un archivo <code>.gguf</code> de tipo Q4_K_M, que reduce drásticamente el tamaño sin invalidar su uso.</p>
+
+            <h3>2.4 Copia del modelo en la carpeta de LM Studio</h3>
+            <pre><code>mkdir -p ~/Library/Application\ Support/LMStudio/models/Microsoft/Phi-3-mini-4k-instruct
+cp phi-3-mini-q4_k_m.gguf ~/Library/Application\ Support/LMStudio/models/Microsoft/Phi-3-mini-4k-instruct/</code></pre>
+            <p>Al copiar el archivo cuantizado a esta ruta, LM Studio lo muestra como un modelo local disponible para cargar en el chat.</p>
+
+            <h3>2.5 Verificación rápida en el chat</h3>
+            <pre><code># En LM Studio:
+# - Seleccionar el modelo Phi‑3 cuantizado
+# - Lanzar una pregunta sencilla, por ejemplo:
+Explica qué es la cuantización</code></pre>
+            <p>Con esta prueba se validó que el modelo responde correctamente y que el consumo de memoria se adapta mejor al equipo.</p>
+        </section>
+
+        <section id="diferencias" class="section">
+            <h2>3. Resultados: modelo original vs cuantizado</h2>
+
+            <div class="img-row">
+                <div class="img-wrapper">
+                    <img src="1.png" alt="Vista de modelos en LM Studio">
+                    <div class="caption">Figura 1. Pantalla de LM Studio mostrando el tamaño de los modelos cargados.</div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="2.png" alt="Ejemplo de respuesta del modelo">
+                    <div class="caption">Figura 2. Fragmento de una conversación de prueba con el modelo.</div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Sin cuantizar</th>
+                        <th>Cuantizado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tamaño aproximado</td>
+                        <td>7.12&nbsp;GB</td>
+                        <td class="highlight">2.23&nbsp;GB</td>
+                    </tr>
+                    <tr>
+                        <td>Velocidad de generación</td>
+                        <td>12.74&nbsp;tokens/s</td>
+                        <td class="highlight">30.36&nbsp;tokens/s</td>
+                    </tr>
+                    <tr>
+                        <td>Tiempo al primer token</td>
+                        <td>4.72&nbsp;s</td>
+                        <td>5.18&nbsp;s</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.1 Visualización del rendimiento</h3>
+            <div class="chart-container">
+                <canvas id="chartRendimiento"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const ctx2 = document.getElementById('chartRendimiento').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Tamaño (GB)', 'Velocidad (tokens/s)'],
+                datasets: [
+                    {
+                        label: 'Sin cuantizar',
+                        data: [7.12, 12.74],
+                        backgroundColor: 'rgba(148, 163, 184, 0.9)',
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Cuantizado',
+                        data: [2.23, 30.36],
+                        backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#0f172a' },
+                        grid: { color: '#e5e7eb' }
+                    },
+                    x: {
+                        ticks: { color: '#0f172a' },
+                        grid: { color: '#e5e7eb' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: '#0f172a' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
