@@ -3,82 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owen Pizarro - Documentación Técnica IA Local</title>
+    <title>Owen Pizarro - Análisis Matemático Destilación</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; padding: 2rem; }
-        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
-        header { background: linear-gradient(45deg, #11998e, #38ef7d); color: white; padding: 3rem 2rem; text-align: center; }
-        .content { padding: 2rem; }
-        .step { display: flex; align-items: flex-start; margin: 2rem 0; padding: 1.5rem; background: #f8f9ff; border-radius: 12px; border-left: 6px solid #11998e; }
-        .step-number { background: #11998e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem; flex-shrink: 0; }
-        .terminal { background: #1a1a1a; color: #00ff00; padding: 1.5rem; border-radius: 8px; font-family: 'Courier New', monospace; margin: 1rem 0; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9ff; }
-        .signature { text-align: center; padding: 2rem; background: #f8f9fa; margin-top: 2rem; border-radius: 12px; }
+        body{font-family:'Courier New',monospace;background:#1a1a1a;color:#00ff00;padding:30px;line-height:1.5}
+        .encabezado{background:#006400;color:#00ff00;padding:30px;text-align:center;border-radius:5px;margin-bottom:30px}
+        .formula{background:#2d2d2d;padding:20px;border-radius:5px;margin:15px 0;font-size:1.1em;border-left:5px solid #00ff00}
+        .resultado{background:#004d00;color:#90ee90;padding:20px;border-radius:5px;margin:20px 0}
+        table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.95em}
+        th,td{padding:10px;border:1px solid #006400;text-align:center}
+        th{background:#006400;color:#00ff00}
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚙️ Owen Pizarro - Configuración Agente IA Local</h1>
-            <p>Documentación técnica completa - 12 Febrero 2026</p>
-        </header>
-
-        <div class="content">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div>
-                    <h3>Instalación LM Studio + Modelo Optimizado</h3>
-                    <p>Hardware: Intel i5-1035G4 | Iris Plus | 12GB DDR4-2667MHz</p>
-                    <div class="terminal">lmstudio.ai → Qwen2.5-Coder-7B-Instruct-Q4_K_M<br>Memoria estimada: 3.2GB | GPU Offload: 4/32 capas</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <div>
-                    <h3>Configuración Servidor OpenAI-compatible</h3>
-                    <div class="terminal">Developer Tab → Context Length: 8192 tokens<br>⚙️ Enable CORS ✓ | Local Network ✓ | Port: 1234</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <div>
-                    <h3>Dependencias Sistema (Windows 11 Pro)</h3>
-                    <table>
-                        <tr><th>Comando</th><th>Resultado</th></tr>
-                        <tr><td>winget install OpenJS.NodeJS.LTS</td><td>Node.js 20.17.0 ✓</td></tr>
-                        <tr><td>choco install opencode</td><td>OpenCode CLI 1.1.53 ✓</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <div>
-                    <h3>Integración OpenCode → LM Studio</h3>
-                    <div class="terminal">:provider openai http://127.0.0.1:1234/v1 lm-studio<br>✅ Provider lmstudio connected successfully</div>
-                </div>
-            </div>
-
-            <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
-                <h3>✅ Validación Final</h3>
-                <p><strong>Prompt:</strong> "Función PHP validar email/contraseña"<br>
-                <strong>Resultado:</strong> Código PHP generado localmente ✓<br>
-                <strong>Latencia:</strong> 2.8s | Tokens/s: 18.4</p>
-            </div>
-        </div>
-
-        <div class="signature">
-            <h3>Owen Pizarro - Técnico Sistemas</h3>
-            <p>Configuración validada: Qwen2.5-Coder-7B en GPU Iris Plus<br>
-            <small>12 Febrero 2026 - Cumple todos requisitos tarea</small></p>
-        </div>
+    <div class="encabezado">
+        <h1>=== ANÁLISIS MATEMÁTICO ===</h1>
+        <h2>Owen Pizarro - Destilación</h2>
     </div>
+
+    <div class="formula">
+        Loss_total = α·CE(y_true, y_student) + (1-α)·KL(p_teacher||p_student)<br>
+        Donde: α=0.3, T=3.0, CE=CrossEntropy, KL=KL-Divergence
+    </div>
+
+    <div class="resultado">
+        <h3>OUTPUT: COMPRESIÓN 15.2x EXITOSA</h3>
+        <p>KL_medio=0.3942 | Accuracy=75.0% | Ratio_params=67.0M/4.4M=15.23</p>
+    </div>
+
+    <table>
+        <tr><th>Métrica</th><th>Valor</th><th>Status</th></tr>
+        <tr><td>Params_Prof</td><td>67,000,000</td><td>BASELINE</td></tr>
+        <tr><td>Params_Est</td><td>4,410,000</td><td><span style="color:#00ff00">✓ 15.2x ↓</span></td></tr>
+        <tr><td>KL_Diverg</td><td>0.3942</td><td><span style="color:#00ff00">✓ Excelente</span></td></tr>
+        <tr><td>Accuracy</td><td>75.0%</td><td><span style="color:#00ff00">✓ 81% baseline</span></td></tr>
+    </table>
+
+    <div class="formula">
+        Eficiencia = (Accuracy_est / Accuracy_prof) × (Params_prof / Params_est)<br>
+        Eficiencia = (0.75/0.92) × 15.23 = <strong>12.42</strong>
+    </div>
+
+    <div style="background:#004d00;color:#90ee90;padding:20px;border-radius:5px;margin-top:25px">
+        <h3>✓ VEREDICTO MATEMÁTICO: DESTILACIÓN ÓPTIMA</h3>
+        <p>KL∈[0.1,0.61] confirma convergencia. Ratio 12.42 indica eficiencia superior.</p>
+    </div>
+
+    <!-- === CAPTURAS EXPERIMENTALES === -->
+
+    <div style="background:#2d2d2d;padding:25px;border-radius:5px;margin:30px 0;border-left:5px solid #00ff00">
+        <h3 style="color:#00ff00">📸 Evidencia Experimental - KL Divergence</h3>
+        <p style="color:#90ee90">
+            Evaluación por muestra y KL promedio = 0.3942 confirmando buena imitación del modelo estudiante.
+        </p>
+        <img src="Captura de pantalla 2026-02-12 133930.png" alt="Evaluación KL Divergence"
+             style="width:100%;border-radius:5px;margin-top:15px;border:2px solid #006400;">
+    </div>
+
+    <div style="background:#2d2d2d;padding:25px;border-radius:5px;margin:30px 0;border-left:5px solid #00ff00">
+        <h3 style="color:#00ff00">📸 Comparativa Final Profesor vs Estudiante</h3>
+        <p style="color:#90ee90">
+            Comparación de latencia, parámetros y accuracy tras destilación (15.2x compresión).
+        </p>
+        <img src="Captura de pantalla 2026-02-13 165059.png" alt="Tabla Comparativa Final"
+             style="width:100%;border-radius:5px;margin-top:15px;border:2px solid #006400;">
+    </div>
+
 </body>
 </html>
-
 
