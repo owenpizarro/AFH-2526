@@ -17,6 +17,8 @@
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
         th { background: #f8f9ff; }
         .signature { text-align: center; padding: 2rem; background: #f8f9fa; margin-top: 2rem; border-radius: 12px; }
+        .image-block { margin-top: 1rem; }
+        .image-block img { width: 100%; border-radius: 10px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
     </style>
 </head>
 <body>
@@ -27,12 +29,16 @@
         </header>
 
         <div class="content">
+
             <div class="step">
                 <div class="step-number">1</div>
                 <div>
                     <h3>Instalación LM Studio + Modelo Optimizado</h3>
                     <p>Hardware: Intel i5-1035G4 | Iris Plus | 12GB DDR4-2667MHz</p>
-                    <div class="terminal">lmstudio.ai → Qwen2.5-Coder-7B-Instruct-Q4_K_M<br>Memoria estimada: 3.2GB | GPU Offload: 4/32 capas</div>
+                    <div class="terminal">
+                        lmstudio.ai → Qwen2.5-Coder-7B-Instruct-Q4_K_M<br>
+                        Memoria estimada: 3.2GB | GPU Offload: 4/32 capas
+                    </div>
                 </div>
             </div>
 
@@ -40,7 +46,15 @@
                 <div class="step-number">2</div>
                 <div>
                     <h3>Configuración Servidor OpenAI-compatible</h3>
-                    <div class="terminal">Developer Tab → Context Length: 8192 tokens<br>⚙️ Enable CORS ✓ | Local Network ✓ | Port: 1234</div>
+                    <div class="terminal">
+                        Developer Tab → Context Length: 8192 tokens<br>
+                        ⚙️ Enable CORS ✓ | Local Network ✓ | Port: 1234
+                    </div>
+
+                    <div class="image-block">
+                        <strong>Servidor en ejecución:</strong>
+                        <img src="lmstudio_running.png" alt="LM Studio Running">
+                    </div>
                 </div>
             </div>
 
@@ -60,22 +74,40 @@
                 <div class="step-number">4</div>
                 <div>
                     <h3>Integración OpenCode → LM Studio</h3>
-                    <div class="terminal">:provider openai http://127.0.0.1:1234/v1 lm-studio<br>✅ Provider lmstudio connected successfully</div>
+                    <div class="terminal">
+                        :provider openai http://127.0.0.1:1234/v1 lm-studio<br>
+                        ✅ Provider lmstudio connected successfully
+                    </div>
+
+                    <div class="image-block">
+                        <strong>Validación API y generación de código:</strong>
+                        <img src="api_php_response.png" alt="API Response PHP">
+                    </div>
                 </div>
             </div>
 
             <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
                 <h3>✅ Validación Final</h3>
-                <p><strong>Prompt:</strong> "Función PHP validar email/contraseña"<br>
-                <strong>Resultado:</strong> Código PHP generado localmente ✓<br>
-                <strong>Latencia:</strong> 2.8s | Tokens/s: 18.4</p>
+                <p>
+                    <strong>Prompt:</strong> "Función PHP validar email/contraseña"<br>
+                    <strong>Resultado:</strong> Código PHP generado localmente ✓<br>
+                    <strong>Latencia:</strong> 2.8s | Tokens/s: 18.4
+                </p>
+
+                <div class="image-block">
+                    <strong>Uso de GPU durante inferencia:</strong>
+                    <img src="gpu_usage.png" alt="GPU Usage 90%">
+                </div>
             </div>
+
         </div>
 
         <div class="signature">
             <h3>Owen Pizarro - Técnico Sistemas</h3>
-            <p>Configuración validada: Qwen2.5-Coder-7B en GPU Iris Plus<br>
-            <small>12 Febrero 2026 - Cumple todos requisitos tarea</small></p>
+            <p>
+                Configuración validada: Qwen2.5-Coder-7B en GPU Iris Plus<br>
+                <small>12 Febrero 2026 - Cumple todos requisitos tarea</small>
+            </p>
         </div>
     </div>
 </body>
