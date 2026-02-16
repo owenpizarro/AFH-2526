@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía paso a paso – Nano‑Quijote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --accent: #6366f1;
+      --accent-soft: rgba(99,102,241,0.08);
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e5e7eb 0, #f9fafb 40%, #e5e7eb 100%);
+      color: var(--text);
+      padding: 30px 12px 40px;
+    }
+    .shell { max-width: 1000px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 26px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .badge span { width: 8px; height: 8px; border-radius: 999px; background: var(--accent); }
+    h1 { font-size: clamp(28px, 4vw, 34px); letter-spacing: -0.04em; margin-bottom: 6px; }
+    .subtitle {
+      font-size: 14px; color: var(--muted);
+      max-width: 640px; margin: 0 auto;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px 20px 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+    }
+    h2 { font-size: 18px; margin-bottom: 8px; letter-spacing: -0.02em; }
+    h3 {
+      font-size: 13px; margin-top: 10px; margin-bottom: 3px;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+    p { font-size: 14px; color: var(--text); margin-bottom: 4px; }
+    .muted { color: var(--muted); }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px; padding: 1px 4px; border-radius: 4px;
+      background: #f3f4f6; border: 1px solid #e5e7eb;
+    }
+    pre {
+      background: #020617; color: #e5e7eb;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      border: 1px solid #111827;
+      margin-top: 4px; margin-bottom: 6px;
+    }
+    pre code { background: transparent; border: none; padding: 0; }
+    .step-list { margin-top: 8px; }
+    .step {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      background: #f9fafb;
+    }
+    .step-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 4px;
+    }
+    .step-index {
+      width: 26px; height: 26px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+    }
+    .step-title {
+      font-size: 14px; font-weight: 600;
+    }
+    .capture-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 6px;
+    }
+    @media (max-width: 800px) {
+      .capture-row { grid-template-columns: 1fr; }
+    }
+    .capture-card {
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      background: #ffffff;
+      padding: 8px 9px;
+    }
+    .capture-title { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+    .capture-desc { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .capture-img {
+      max-width: 100%; border-radius: 8px; display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="badge"><span></span>Guía paso a paso</div>
+      <h1>Cómo se configuró y ejecutó el proyecto “Nano‑Quijote”</h1>
+      <p class="subtitle">
+        Esta guía resume las acciones realizadas y las evidencias en forma de capturas
+        para documentar el pre‑entrenamiento del modelo.
+      </p>
+    </header>
 
+    <main class="card">
+      <h2>Pasos realizados en el proyecto</h2>
+      <div class="step-list">
+        <!-- Paso 1 -->
+        <article class="step">
+          <div class="step-header">
+            <div class="step-index">1</div>
+            <div class="step-title">Organización del directorio de trabajo</div>
+          </div>
+          <p>
+            Se creó el directorio <code>D:\\nano_quijote</code> y se colocaron en él el corpus
+            <code>quijote.txt</code>, los scripts de Python y los archivos de salida del modelo.
+          </p>
+
+          <div class="capture-row">
+            <div>
+              <h3>Estructura de archivos</h3>
+              <p class="muted">
+                En este paso se verifica que todos los ficheros necesarios están presentes
+                en la carpeta de trabajo.
+              </p>
+            </div>
+            <div class="capture-card">
+              <div class="capture-title">Captura – Directorio D:\\nano_quijote</div>
+              <div class="capture-desc">
+                Listado del contenido del directorio con el comando <code>dir</code>.
+              </div>
+              <img class="capture-img" src="2.png" alt="2">
+            </div>
+          </div>
+        </article>
+
+        <!-- Paso 2 -->
+        <article class="step">
+          <div class="step-header">
+            <div class="step-index">2</div>
+            <div class="step-title">Revisión de diferencias y resultados</div>
+          </div>
+          <p>
+            Se compararon distintas ejecuciones y resultados para analizar diferencias
+            en la configuración o el comportamiento del modelo.
+          </p>
+          <div class="capture-card">
+            <div class="capture-title">Captura – Diferencias / visión global</div>
+            <div class="capture-desc">
+              Imagen que muestra de forma comparativa cambios o resultados obtenidos
+              en diferentes ejecuciones.
+            </div>
+            <img class="capture-img" src="1.png" alt="1">
+          </div>
+        </article>
+
+        <!-- Paso 3 -->
+        <article class="step">
+          <div class="step-header">
+            <div class="step-index">3</div>
+            <div class="step-title">Ejecución del tokenizador</div>
+          </div>
+          <p>
+            A continuación se ejecutó el tokenizador para construir el vocabulario de caracteres
+            a partir del texto de Don Quijote.
+          </p>
+          <pre><code>(venv) D:\nano_quijote&gt;python tokenizer.py
+Vocab: 105
+Chars: !"#$%'()*,-./0123456789:;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyz¡«»¿ÁÉÍÑÓÚàáéíïñóùúü-
+Test: [36, 71, 68, 57]
+Hola</code></pre>
+
+          <div class="capture-card">
+            <div class="capture-title">Captura – Ejecución de python tokenizer.py</div>
+            <div class="capture-desc">
+              Pantalla de la consola donde se ve el tamaño del vocabulario y el test “Hola”.
+            </div>
+            <img class="capture-img" src="3.png" alt="3">
+          </div>
+        </article>
+
+        <!-- Paso 4 -->
+        <article class="step">
+          <div class="step-header">
+            <div class="step-index">4</div>
+            <div class="step-title">Entrenamiento del modelo</div>
+          </div>
+          <p>
+            Con el tokenizador listo, se ejecutó <code>nano_model.py</code> para entrenar el Transformer
+            y guardar el modelo en un archivo de pesos.
+          </p>
+          <pre><code>(venv) D:\nano_quijote&gt;python nano_model.py
+Cargando datos del Quijote...
+Vocab size: 105
+INICIANDO PRE-ENTRENAMIENTO...
+Iter   0: loss 4.889
+Iter 100: loss 2.624
+...
+Iter 900: loss 2.378
+✔ Modelo guardado: nano_quijote.pt</code></pre>
+        </article>
+
+        <!-- Paso 5 -->
+        <article class="step">
+          <div class="step-header">
+            <div class="step-index">5</div>
+            <div class="step-title">Ejecución de la demo final</div>
+          </div>
+          <p>
+            Finalmente se utilizó <code>demo_final.py</code> para mostrar un resumen de las métricas
+            de entrenamiento y generar texto con estilo quijotesco.
+          </p>
+          <pre><code>(venv) D:\nano_quijote&gt;python demo_final.py
+=== NANO-TRANSFORMER PRE-ENTRENADO ===
+PRE-ENTRENAMIENTO COMPLETADO
+Loss inicial: 4.889  Final: 2.282 (↓53%)
+Vocabulario: 105 caracteres castellanos
+Dataset: Don Quijote completo (1.4MB)
+Arquitectura: Transformer personalizado
+2 capas, 64 embeddings, 4 cabezas atención
+Muestra: "mente riraralongabiabiciomúr, der co..."</code></pre>
+
+          <div class="capture-card">
+            <div class="capture-title">Captura – Demo final en consola</div>
+            <div class="capture-desc">
+              Captura de la salida de <code>demo_final.py</code> con el banner y la muestra de texto.
+            </div>
+            <img class="capture-img" src="4.png" alt="4">
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
