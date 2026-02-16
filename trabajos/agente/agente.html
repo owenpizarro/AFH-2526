@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owen Pizarro - Análisis Matemático Destilación</title>
+    <style>
+        body{font-family:'Courier New',monospace;background:#1a1a1a;color:#00ff00;padding:30px;line-height:1.5}
+        .encabezado{background:#006400;color:#00ff00;padding:30px;text-align:center;border-radius:5px;margin-bottom:30px}
+        .formula{background:#2d2d2d;padding:20px;border-radius:5px;margin:15px 0;font-size:1.1em;border-left:5px solid #00ff00}
+        .resultado{background:#004d00;color:#90ee90;padding:20px;border-radius:5px;margin:20px 0}
+        table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.95em}
+        th,td{padding:10px;border:1px solid #006400;text-align:center}
+        th{background:#006400;color:#00ff00}
+    </style>
+</head>
+<body>
+    <div class="encabezado">
+        <h1>=== ANÁLISIS MATEMÁTICO ===</h1>
+        <h2>Owen Pizarro - Destilación</h2>
+    </div>
+
+    <div class="formula">
+        Loss_total = α·CE(y_true, y_student) + (1-α)·KL(p_teacher||p_student)<br>
+        Donde: α=0.3, T=3.0, CE=CrossEntropy, KL=KL-Divergence
+    </div>
+
+    <div class="resultado">
+        <h3>OUTPUT: COMPRESIÓN 15.2x EXITOSA</h3>
+        <p>KL_medio=0.3942 | Accuracy=75.0% | Ratio_params=67.0M/4.4M=15.23</p>
+    </div>
+
+    <table>
+        <tr><th>Métrica</th><th>Valor</th><th>Status</th></tr>
+        <tr><td>Params_Prof</td><td>67,000,000</td><td>BASELINE</td></tr>
+        <tr><td>Params_Est</td><td>4,410,000</td><td><span style="color:#00ff00">✓ 15.2x ↓</span></td></tr>
+        <tr><td>KL_Diverg</td><td>0.3942</td><td><span style="color:#00ff00">✓ Excelente</span></td></tr>
+        <tr><td>Accuracy</td><td>75.0%</td><td><span style="color:#00ff00">✓ 81% baseline</span></td></tr>
+    </table>
+
+    <div class="formula">
+        Eficiencia = (Accuracy_est / Accuracy_prof) × (Params_prof / Params_est)<br>
+        Eficiencia = (0.75/0.92) × 15.23 = <strong>12.42</strong>
+    </div>
+
+    <div style="background:#004d00;color:#90ee90;padding:20px;border-radius:5px;margin-top:25px">
+        <h3>✓ VEREDICTO MATEMÁTICO: DESTILACIÓN ÓPTIMA</h3>
+        <p>KL∈[0.1,0.61] confirma convergencia. Ratio 12.42 indica eficiencia superior.</p>
+    </div>
+
+    <!-- === CAPTURAS EXPERIMENTALES === -->
+
+    <div style="background:#2d2d2d;padding:25px;border-radius:5px;margin:30px 0;border-left:5px solid #00ff00">
+        <h3 style="color:#00ff00">📸 Evidencia Experimental - KL Divergence</h3>
+        <p style="color:#90ee90">
+            Evaluación por muestra y KL promedio = 0.3942 confirmando buena imitación del modelo estudiante.
+        </p>
+        <img src="/home/vespertino/Descargas/Captura de pantalla 2026-02-12 133930.png" alt="Evaluación KL Divergence"
+             style="width:100%;border-radius:5px;margin-top:15px;border:2px solid #006400;">
+    </div>
+
+    <div style="background:#2d2d2d;padding:25px;border-radius:5px;margin:30px 0;border-left:5px solid #00ff00">
+        <h3 style="color:#00ff00">📸 Comparativa Final Profesor vs Estudiante</h3>
+        <p style="color:#90ee90">
+            Comparación de latencia, parámetros y accuracy tras destilación (15.2x compresión).
+        </p>
+        <img src="/home/vespertino/Descargas/Captura de pantalla 2026-02-13 165059.png" alt="Tabla Comparativa Final"
+             style="width:100%;border-radius:5px;margin-top:15px;border:2px solid #006400;">
+    </div>
+
+</body>
+</html>
