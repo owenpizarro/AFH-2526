@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica: Fine-Tuning Chef-Bot</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --success: #22c55e;
+            --bg: #f8fafc;
+            --text: #334155;
+        }
 
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h1 { color: var(--secondary); margin-bottom: 10px; }
+        .subtitle { color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2::before {
+            content: "✓";
+            background: var(--success);
+            color: white;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        p { margin-bottom: 20px; }
+
+        .img-container {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 1px solid #cbd5e1;
+        }
+
+        .badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <p class="subtitle">Inteligencia Artificial Aplicada</p>
+        <h1>Manual de Entrenamiento: Chef-Bot GGUF</h1>
+        <p>Optimización de modelo Phi-3 mediante Fine-Tuning y Cuantización</p>
+    </header>
+
+    <section class="card">
+        <h2>Fase 1: Preparación del Dataset</h2>
+        <p>Se ha elaborado un conjunto de datos en formato <strong>JSONL</strong> estructurado en parejas de <em>Instruction/Output</em>. El objetivo es especializar al modelo en respuestas concisas sobre gastronomía específica.</p>
+        <div class="img-container">
+            <img src="Captura de pantalla 2026-02-17 202922.png" alt="Captura del archivo JSONL">
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Fase 2: Entrenamiento (Fine-Tuning LoRA)</h2>
+        <p>Utilizando el entorno de Google Colab y la librería <strong>Unsloth</strong>, se procedió al re-entrenamiento del modelo. Se monitorizó la curva de pérdida (Loss) para asegurar la convergencia de los pesos.</p>
+        <div class="img-container">
+            <img src="Captura de pantalla 2026-02-17 203053.png" alt="Captura del proceso en Colab">
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Fase 3: Exportación y Cuantización GGUF</h2>
+        <p>Para permitir la ejecución local, el modelo se exportó a formato <strong>GGUF</strong> con una cuantización de 4 bits (Q4_K_M). Esto equilibra el rendimiento y el uso de memoria RAM.</p>
+        <div class="img-container">
+            <img src="Captura de pantalla 2026-02-17 213323.png" alt="Archivo GGUF generado">
+        </div>
+    </section>
+
+    <section class="card" style="border-left: 5px solid var(--primary);">
+        <h2>Fase 4: Inferencia Local y Resultados</h2>
+        <p><span class="badge">ÉXITO</span> Las pruebas realizadas en <strong>LM Studio</strong> confirman que el modelo ha integrado correctamente el nuevo conocimiento, respondiendo con la estructura y los ingredientes definidos en el dataset original.</p>
+        <div class="img-container">
+            <img src="Captura de pantalla 2026-02-17 212818.png" alt="Resultado de inferencia exitosa">
+        </div>
+    </section>
+
+    <footer>
+        <p>Crear LLM - 2026</p>
+    </footer>
+</div>
+
+</body>
+</html>
