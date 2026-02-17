@@ -6,101 +6,123 @@
     <title>Documentación Técnica: Fine-Tuning Chef-Bot</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #0f172a;
-            --success: #22c55e;
-            --bg: #f8fafc;
-            --text: #334155;
+            --primary: #3b82f6;
+            --secondary: #1e293b;
+            --accent: #60a5fa;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
+            max-width: 1200px; /* Más ancho para que las fotos luzcan */
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary);
+            margin-bottom: 60px;
         }
 
-        h1 { color: var(--secondary); margin-bottom: 10px; }
-        .subtitle { color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-bottom: 40px;
-            border: 1px solid #e2e8f0;
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease;
         }
 
         h2 {
-            color: var(--secondary);
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-top: 0;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            gap: 15px;
         }
 
-        h2::before {
-            content: "✓";
-            background: var(--success);
+        h2 span {
+            background: var(--primary);
             color: white;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-size: 14px;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
         }
 
-        p { margin-bottom: 20px; }
+        p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            max-width: 800px;
+        }
 
-        .img-container {
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 15px;
+        /* CONTENEDOR DE IMAGEN GRANDE */
+        .img-wrapper {
+            width: 100%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
         }
 
         img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border: 1px solid #cbd5e1;
+            width: 100%; /* Ocupa todo el ancho del card */
+            display: block;
+            transition: opacity 0.3s ease;
+            cursor: zoom-in;
         }
 
-        .badge {
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
+        img:hover {
+            opacity: 0.9;
+        }
+
+        .tech-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .tech-item b {
+            color: var(--primary);
+            display: block;
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            color: #94a3b8;
-            font-size: 0.9em;
+            padding: 50px;
+            color: var(--text-dim);
+            border-top: 1px solid #334155;
         }
     </style>
 </head>
@@ -108,45 +130,51 @@
 
 <div class="container">
     <header>
-        <p class="subtitle">Inteligencia Artificial Aplicada</p>
-        <h1>Manual de Entrenamiento: Chef-Bot GGUF</h1>
-        <p>Optimización de modelo Phi-3 mediante Fine-Tuning y Cuantización</p>
+        <p class="subtitle">INGENIERÍA DE PROMPT & FINE-TUNING</p>
+        <h1>Chef-Bot: Documentación del Proceso</h1>
     </header>
 
-    <section class="card">
-        <h2>Fase 1: Preparación del Dataset</h2>
-        <p>Se ha elaborado un conjunto de datos en formato <strong>JSONL</strong> estructurado en parejas de <em>Instruction/Output</em>. El objetivo es especializar al modelo en respuestas concisas sobre gastronomía específica.</p>
-        <div class="img-container">
-            <img src="Captura de pantalla 2026-02-17 202922.png" alt="Captura del archivo JSONL">
+    <section class="step-card">
+        <h2><span>01</span> Dataset de Entrenamiento</h2>
+        <p>Estructuración de datos en formato JSONL. Se definieron instrucciones claras para forzar al modelo a adoptar un estilo de respuesta determinista.</p>
+        <div class="img-wrapper">
+            <img src="Captura de pantalla 2026-02-17 202922.png" alt="Dataset JSONL">
         </div>
     </section>
 
-    <section class="card">
-        <h2>Fase 2: Entrenamiento (Fine-Tuning LoRA)</h2>
-        <p>Utilizando el entorno de Google Colab y la librería <strong>Unsloth</strong>, se procedió al re-entrenamiento del modelo. Se monitorizó la curva de pérdida (Loss) para asegurar la convergencia de los pesos.</p>
-        <div class="img-container">
-            <img src="Captura de pantalla 2026-02-17 203053.png" alt="Captura del proceso en Colab">
+    <section class="step-card">
+        <h2><span>02</span> Ejecución del Fine-Tuning</h2>
+        <p>Proceso de entrenamiento mediante LoRA en Google Colab. Se observa la reducción de la curva de pérdida (Loss), garantizando la asimilación del conocimiento.</p>
+        <div class="img-wrapper">
+            <img src="Captura de pantalla 2026-02-17 203053.png" alt="Curva de Loss en Colab">
         </div>
     </section>
 
-    <section class="card">
-        <h2>Fase 3: Exportación y Cuantización GGUF</h2>
-        <p>Para permitir la ejecución local, el modelo se exportó a formato <strong>GGUF</strong> con una cuantización de 4 bits (Q4_K_M). Esto equilibra el rendimiento y el uso de memoria RAM.</p>
-        <div class="img-container">
-            <img src="Captura de pantalla 2026-02-17 213323.png" alt="Archivo GGUF generado">
+    <section class="step-card">
+        <h2><span>03</span> Cuantización y Exportación GGUF</h2>
+        <p>Conversión de los pesos entrenados al formato GGUF (4-bit) para optimizar la inferencia en hardware local con LM Studio.</p>
+        <div class="img-wrapper">
+            <img src="Captura de pantalla 2026-02-17 213323.png" alt="Archivo GGUF">
         </div>
     </section>
 
-    <section class="card" style="border-left: 5px solid var(--primary);">
-        <h2>Fase 4: Inferencia Local y Resultados</h2>
-        <p><span class="badge">ÉXITO</span> Las pruebas realizadas en <strong>LM Studio</strong> confirman que el modelo ha integrado correctamente el nuevo conocimiento, respondiendo con la estructura y los ingredientes definidos en el dataset original.</p>
-        <div class="img-container">
-            <img src="Captura de pantalla 2026-02-17 212818.png" alt="Resultado de inferencia exitosa">
+    <section class="step-card">
+        <h2><span>04</span> Validación Final del Modelo</h2>
+        <p>Inferencia realizada en LM Studio. El modelo recupera con éxito la información específica del dataset, demostrando el éxito del Fine-Tuning.</p>
+        <div class="img-wrapper">
+            <img src="Captura de pantalla 2026-02-17 212818.png" alt="Resultado Final">
+        </div>
+        
+        <div class="tech-info">
+            <div class="tech-item"><b>Modelo Base:</b> Phi-3-mini-4k</div>
+            <div class="tech-item"><b>Inferencia:</b> LM Studio</div>
+            <div class="tech-item"><b>Temperatura:</b> 0.0 (Deterministica)</div>
+            <div class="tech-item"><b>Formato:</b> GGUF Q4_K_M</div>
         </div>
     </section>
 
     <footer>
-        <p>Crear LLM - 2026</p>
+        <p>&copy; 2026 Proyecto IA - Chef-Bot Especializado</p>
     </footer>
 </div>
 
