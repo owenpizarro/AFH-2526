@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asistente Formal - Dashboard Técnico</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Courier New', monospace;
+    background:#0f172a;
+    color:#e2e8f0;
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    background:#1e293b;
+    padding:30px 20px;
+    height:100vh;
+    position:fixed;
+}
+
+.sidebar h2{
+    color:#38bdf8;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:#cbd5e1;
+    text-decoration:none;
+    margin:15px 0;
+    padding:10px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:#38bdf8;
+    color:#0f172a;
+}
+
+/* CONTENIDO */
+.main{
+    margin-left:270px;
+    padding:40px;
+    width:100%;
+}
+
+.card{
+    background:#1e293b;
+    padding:25px;
+    margin-bottom:30px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(56,189,248,0.2);
+}
+
+.card h3{
+    color:#38bdf8;
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.metric{
+    background:#0f172a;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    border:1px solid #38bdf8;
+}
+
+.metric strong{
+    font-size:1.8rem;
+    color:#22d3ee;
+}
+
+img{
+    width:100%;
+    border-radius:10px;
+    margin-top:15px;
+    border:2px solid #38bdf8;
+}
+
+footer{
+    text-align:center;
+    margin-top:40px;
+    color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>🚀 IA ASIR</h2>
+    <a href="#dataset">Dataset</a>
+    <a href="#tokenizador">Tokenizador</a>
+    <a href="#training">Entrenamiento</a>
+    <a href="#chat">Chat</a>
+</div>
+
+<div class="main">
+
+<div class="card">
+<h1>Fine-Tuning Asistente Formal</h1>
+<p>Modelo Transformer desde cero - Arquitectura MLP Residual</p>
+</div>
+
+<div class="metrics">
+    <div class="metric">
+        <strong>2.709 → 1.994</strong>
+        <p>Loss Final</p>
+    </div>
+    <div class="metric">
+        <strong>47</strong>
+        <p>Vocabulario</p>
+    </div>
+    <div class="metric">
+        <strong>10</strong>
+        <p>Épocas</p>
+    </div>
+    <div class="metric">
+        <strong>~15K</strong>
+        <p>Parámetros</p>
+    </div>
+</div>
+
+<div class="card" id="dataset">
+<h3>📄 Dataset Formal</h3>
+<p>8 ejemplos en español formal de alta calidad.</p>
+<img src="1f.png">
+</div>
+
+<div class="card" id="tokenizador">
+<h3>🔤 Tokenizador Character-Level</h3>
+<p>47 caracteres únicos incluyendo ñ, ¿, ¡</p>
+<img src="2f.png">
+</div>
+
+<div class="card" id="training">
+<h3>⚙️ Entrenamiento</h3>
+<p>Epoch 10 completada - reducción del 26.5% en loss.</p>
+<img src="3f.png">
+</div>
+
+<div class="card" id="chat">
+<h3>💬 Inferencia Autoregresiva</h3>
+<p>Generación token-por-token funcionando.</p>
+<img src="4f.png">
+</div>
+
+<footer>
+Práctica IA ASIR | Dashboard Técnico Dark Mode
+</footer>
+
+</div>
+</body>
+</html>
